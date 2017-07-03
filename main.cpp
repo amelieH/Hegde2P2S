@@ -2,7 +2,7 @@
 #include "game.h"
 
 
-static const string HOME = "/Users/heliou/Documents/these/theorie_jeux/Hedge/";
+static const string HOME = "/Users/heliou/Documents/these/theorie_jeux/Hedge2P2S/";
 
 
 void fill_payoff(double** payoff1, double** payoff2){
