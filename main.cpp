@@ -29,19 +29,31 @@ void print_payoffs(double** payoff1, double** payoff2){
 }
 
 int main() {
-  int seed=100;
-  srand(seed);
   double** payoff1 = new double* [2];
   double** payoff2 = new double* [2];
   for( int i=0;i<2;i++){
     payoff1[i]=new double[2];
     payoff2[i]=new double[2];
   }
-  random_payoff(payoff1,payoff2);
-  seed=90;
-  srand(seed);
+  //random_payoff(payoff1,payoff2);
+  srand(0);
+  payoff1[1][1]=100/110.0;
+  payoff1[1][0]=1;
+  payoff1[0][1]=100/110.0;
+  payoff1[0][0]=0;
+  payoff2[1][1]=100/110.0;
+  payoff2[1][0]=1;
+  payoff2[0][1]=100/110.0;
+  fill_payoff(payoff1,payoff2);
   print_payoffs(payoff1,payoff2);
-  Game* G=new Game(payoff1, payoff2, 100);
-  G->play(HOME+"out_s"+to_string(seed)+".dat");
+  int seeds[20];
+  for (int i=0;i<20;i++){
+    seeds[i]=rand();
+  }
+  for (int seed : seeds){
+    srand(seed);
+    Game* G=new Game(payoff1, payoff2, 1000);
+    G->play(HOME+"out-s"+to_string(seed)+".dat");
+  }
   return 0;
 }

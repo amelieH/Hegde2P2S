@@ -89,7 +89,7 @@ double Game::play_one_turn(int step,bool &stop) {
   }
   for (i=0;i<2;i++)
   delete[] utility[i];
-  return potential[P1->getStrat()][P2->getStrat()];
+  return potential[0][0]*P1->proba_strat[0]*P2->proba_strat[0]+potential[1][0]*P1->proba_strat[1]*P2->proba_strat[0]+potential[0][1]*P1->proba_strat[0]*P2->proba_strat[1]+potential[1][1]*P1->proba_strat[1]*P2->proba_strat[1];;
 }
 
 double** Game::potential_func(double ** payoff1,double** payoff2){

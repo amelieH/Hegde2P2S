@@ -17,7 +17,7 @@ _id(id){
   _strat=0;
   proba_strat = new double[2];
   y_strat = new long double[2];
-  draw_ini_weight();
+  draw_ini_pba();
   //set_weight(0.5,0.5);
 }
 
@@ -69,10 +69,20 @@ bool Player::update_proba(){
 void Player::draw_ini_weight() {
   double r;
   for(int i=0;i<2;i++) {
-    r = ((double) rand() / (RAND_MAX));
-    y_strat[i]=r;
+  r = ((double) rand() / (RAND_MAX));
+  y_strat[i]=r;
   }
   update_proba();
+}
+
+void Player::draw_ini_pba() {
+    double r;
+    r=rand();
+    proba_strat[0]=((double) r / (RAND_MAX));
+    cout<<"Player "<<_id<<" ini proba "<<proba_strat[0]<<endl;
+    proba_strat[1]=1-y_strat[0];
+    y_strat[0]=log(proba_strat[0]);
+    y_strat[1]=log(proba_strat[1]);
 }
 
 void Player::set_weight(double w1, double w2) {
